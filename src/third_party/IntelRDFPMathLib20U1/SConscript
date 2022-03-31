@@ -309,11 +309,11 @@ if processor == 'i386' or processor == 'emscripten':
 elif processor == 'arm':
     cpp_defines['IA32'] = '1'
     cpp_defines['ia32'] = '1'
-elif processor == "aarch64":
+elif processor == "aarch64" or processor == "x64_arm64":
     cpp_defines['efi2'] = '1'
     cpp_defines['EFI2'] = '1'
 # Using 64 bit little endian
-elif processor == 'x86_64' or processor == 'ppc64le' or processor == 'riscv64':
+elif processor == 'x86_64' or processor == 'ppc64le' or processor == 'riscv64' :
     cpp_defines['efi2'] = '1'
     cpp_defines['EFI2'] = '1'
 # Using 64 bit big endian

@@ -208,7 +208,7 @@ def get_output(vcbat, args = None, env = None):
     if args:
         debug("Calling '%s %s'" % (vcbat, args))
         popen = SCons.Action._subproc(env,
-                                      '"%s" %s & set' % (vcbat, args),
+                                      '"%s" x64_arm64 & set' % vcbat,
                                       stdin='devnull',
                                       stdout=subprocess.PIPE,
                                       stderr=subprocess.PIPE)

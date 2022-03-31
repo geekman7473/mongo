@@ -1364,6 +1364,7 @@ processor_macros = {
     'riscv64'    : { 'endian': 'little', 'check': '(defined(__riscv)) && (__riscv_xlen == 64)' },
     's390x'      : { 'endian': 'big',    'check': '(defined(__s390x__))' },
     'x86_64'     : { 'endian': 'little', 'check': '(defined(__x86_64) || defined(_M_AMD64))' },
+    'x64_arm64'  : { 'endian': 'little', 'check': '(defined(_M_AMD64) || defined(_M_ARM64EC))' }
 }
 
 def CheckForProcessor(context, which_arch):
@@ -1391,6 +1392,8 @@ def CheckForProcessor(context, which_arch):
         ret = run_compile_check(k)
         if ret:
             context.Result('Detected a %s processor' % k)
+            return k
+        elif k == "x64_arm64": #TODO fix this!!!
             return k
 
     context.Result('Could not detect processor model/architecture')
@@ -2103,6 +2106,10 @@ elif env.TargetOSIs('openbsd'):
     env.Append( LIBS=[ "kvm" ] )
 
 elif env.TargetOSIs('windows'):
+    # Compile ARM64EC
+    env.Append( CCFLAGS=["/arm64EC"] )
+    env.Append( LINKFLAGS=["/MACHINE:ARM64EC"] )
+
     env['DIST_ARCHIVE_SUFFIX'] = '.zip'
 
     # If tools configuration fails to set up 'cl' in the path, fall back to importing the whole
@@ -3347,7 +3354,7 @@ def doConfigure(myenv):
         def CheckWindowsSDKVersion(context):
 
             test_body = """
-            #include <windows.h>
+            #include <SdkDdkVer.h>
             #if !defined(NTDDI_WINBLUE)
             #error Need Windows SDK Version 8.1 or higher
             #endif
