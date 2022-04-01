@@ -25,6 +25,11 @@ U_NAMESPACE_BEGIN
 
 UOBJECT_DEFINE_RTTI_IMPLEMENTATION(Normalizer)
 
+#ifdef move32
+     // One of the system headers right now is sometimes defining a conflicting macro we don't use
+#undef move32
+#endif
+
 //-------------------------------------------------------------------------
 // Constructors and other boilerplate
 //-------------------------------------------------------------------------
