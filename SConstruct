@@ -2108,7 +2108,12 @@ elif env.TargetOSIs('openbsd'):
 elif env.TargetOSIs('windows'):
     # Compile ARM64EC
     env.Append( CCFLAGS=["/arm64EC"] )
-    env.Append( LINKFLAGS=["/MACHINE:ARM64EC"] )
+    env.Append( LINKFLAGS=["/machine:arm64ec"] )
+    env.Append( ARFLAGS=["/machine:arm64ec"])
+    env.Append( CPPDEFINES=["AMD64"])
+    env.Append( CPPDEFINES=["_AMD64_"])
+    env.Append( CPPDEFINES=["ARM64EC"])
+    env.Append( CPPDEFINES=["_ARM64EC_"])
 
     env['DIST_ARCHIVE_SUFFIX'] = '.zip'
 

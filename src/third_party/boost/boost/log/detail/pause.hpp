@@ -26,12 +26,18 @@
 #if defined(__INTEL_COMPILER) || defined(_MSC_VER)
 #    if defined(_M_IX86)
 #        define BOOST_LOG_AUX_PAUSE __asm { pause }
-#    elif defined(_M_AMD64)
+#    elif defined(_M_AMD64) && !defined(_M_ARM64EC)
 extern "C" void _mm_pause(void);
 #        if defined(BOOST_MSVC)
 #            pragma intrinsic(_mm_pause)
 #        endif
 #        define BOOST_LOG_AUX_PAUSE _mm_pause()
+#     elif defined(_M_ARM64) || defined(_M_ARM) || defined(_M_ARM64EC)
+extern "C" void __yield(void);
+#       if defined(BOOST_MSVC)
+#          pragma intrinsic(__yield)
+#       endif
+#       define BOOST_LOG_AUX_PAUSE __yield()
 #    endif
 #elif defined(__GNUC__) && (defined(__i386__) || defined(__x86_64__))
 #    define BOOST_LOG_AUX_PAUSE __asm__ __volatile__("pause;")

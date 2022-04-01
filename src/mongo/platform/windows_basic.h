@@ -85,8 +85,6 @@
 // get the definitions from ntstatus.h, which has a more complete list.
 #define WIN32_NO_STATUS
 
-#define _ARM64EC_
-
 #include <windows.h>
 #include <winsock2.h>  //this must be included before the first windows.h include
 #include <ws2tcpip.h>

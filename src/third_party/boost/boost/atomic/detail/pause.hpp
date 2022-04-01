@@ -18,12 +18,12 @@
 #endif
 
 #if defined(_MSC_VER)
-#if defined(_M_AMD64) || defined(_M_IX86)
+#if (defined(_M_AMD64) && !defined(_M_ARM64EC))|| defined(_M_IX86)
 extern "C" void _mm_pause(void);
 #if defined(BOOST_MSVC)
 #pragma intrinsic(_mm_pause)
 #endif
-#elif defined(_M_ARM64) || defined(_M_ARM)
+#elif defined(_M_ARM64) || defined(_M_ARM) || defined(_M_ARM64EC)
 extern "C" void __yield(void);
 #if defined(BOOST_MSVC)
 #pragma intrinsic(__yield)
@@ -38,9 +38,9 @@ namespace detail {
 BOOST_FORCEINLINE void pause() BOOST_NOEXCEPT
 {
 #if defined(_MSC_VER)
-#if defined(_M_AMD64) || defined(_M_IX86)
+#if (defined(_M_AMD64) && !defined(_M_ARM64EC)) || defined(_M_IX86)
     _mm_pause();
-#elif defined(_M_ARM64) || defined(_M_ARM)
+#elif defined(_M_ARM64) || defined(_M_ARM) || defined(_M_ARM64EC)
     __yield();
 #endif
 #elif defined(__GNUC__)
