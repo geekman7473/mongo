@@ -105,7 +105,7 @@ extern "C" SysAllocator* tc_get_sysalloc_default(SysAllocator *def)
 
 #if defined(_M_IX86)
 #pragma comment(linker, "/alternatename:_tc_get_sysalloc_override=_tc_get_sysalloc_default")
-#elif defined(_M_X64)
+#elif defined(_M_X64) || defined(_M_ARM64EC)
 #pragma comment(linker, "/alternatename:tc_get_sysalloc_override=tc_get_sysalloc_default")
 #endif
 

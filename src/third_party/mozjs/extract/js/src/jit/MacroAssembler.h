@@ -7,15 +7,6 @@
 #ifndef jit_MacroAssembler_h
 #define jit_MacroAssembler_h
 
-#ifdef move32
-     // One of the system headers right now is sometimes defining a conflicting macro we don't use
-#undef move32
-#endif
-#ifdef move64
-     // One of the system headers right now is sometimes defining a conflicting macro we don't use
-#undef move64
-#endif
-
 #include "mozilla/EndianUtils.h"
 #include "mozilla/MacroForEach.h"
 #include "mozilla/MathAlgorithms.h"
@@ -53,6 +44,15 @@
 #include "vm/StringType.h"
 #include "wasm/WasmFrame.h"
 #include "wasm/WasmTypes.h"
+
+#ifdef move32
+     // One of the system headers right now is sometimes defining a conflicting macro we don't use
+#undef move32
+#endif
+#ifdef move64
+     // One of the system headers right now is sometimes defining a conflicting macro we don't use
+#undef move64
+#endif
 
 // [SMDOC] MacroAssembler multi-platform overview
 //

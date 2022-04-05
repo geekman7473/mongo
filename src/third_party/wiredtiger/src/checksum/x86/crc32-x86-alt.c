@@ -26,6 +26,7 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 
+#include <intrin.h>
 #include <wiredtiger_config.h>
 #include <inttypes.h>
 #include <stdbool.h>

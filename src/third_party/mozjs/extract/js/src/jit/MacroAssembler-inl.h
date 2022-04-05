@@ -7,6 +7,10 @@
 #ifndef jit_MacroAssembler_inl_h
 #define jit_MacroAssembler_inl_h
 
+#ifdef move32
+#undef move32
+#endif
+
 #include "jit/MacroAssembler.h"
 
 #include "mozilla/FloatingPoint.h"

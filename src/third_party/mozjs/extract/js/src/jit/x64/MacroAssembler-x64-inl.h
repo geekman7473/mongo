@@ -7,6 +7,10 @@
 #ifndef jit_x64_MacroAssembler_x64_inl_h
 #define jit_x64_MacroAssembler_x64_inl_h
 
+#ifdef move32
+#undef move32
+#endif
+
 #include "jit/x64/MacroAssembler-x64.h"
 
 #include "jit/x86-shared/MacroAssembler-x86-shared-inl.h"
