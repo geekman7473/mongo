@@ -7,6 +7,15 @@
 #ifndef jit_MacroAssembler_h
 #define jit_MacroAssembler_h
 
+#ifdef move32
+     // One of the system headers right now is sometimes defining a conflicting macro we don't use
+#undef move32
+#endif
+#ifdef move64
+     // One of the system headers right now is sometimes defining a conflicting macro we don't use
+#undef move64
+#endif
+
 #include "mozilla/EndianUtils.h"
 #include "mozilla/MacroForEach.h"
 #include "mozilla/MathAlgorithms.h"
@@ -15,6 +24,7 @@
 
 #if defined(JS_CODEGEN_X86)
 #  include "jit/x86/MacroAssembler-x86.h"
+#error "MUST BE jit/x64/MacroAssembler-x64.h"
 #elif defined(JS_CODEGEN_X64)
 #  include "jit/x64/MacroAssembler-x64.h"
 #elif defined(JS_CODEGEN_ARM)

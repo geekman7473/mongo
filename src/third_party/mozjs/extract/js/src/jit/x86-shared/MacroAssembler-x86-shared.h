@@ -9,8 +9,14 @@
 
 #include "mozilla/Casting.h"
 
+#ifdef move32
+     // One of the system headers right now is sometimes defining a conflicting macro we don't use
+#undef move32
+#endif
+
 #if defined(JS_CODEGEN_X86)
 #  include "jit/x86/Assembler-x86.h"
+#error "MUST BE x64!!!!!!!!!!!!!!!!"
 #elif defined(JS_CODEGEN_X64)
 #  include "jit/x64/Assembler-x64.h"
 #endif
